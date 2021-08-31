@@ -1,0 +1,18 @@
+﻿@page
+@model SingleViewCodeModel
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@functions {
+    public class SingleViewCodeModel : PageModel
+    {
+        public string Message { get; private set; } = "In page model: ";
+        public void OnGet()
+        {
+            Message += $" Server seconds  { DateTime.Now.Second.ToString() }";
+        }
+    }
+}
+
+<div class="text-center">
+    <h2>@Model.Message</h2>
+    <p>last_update_at:</p>
+</div>

@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UserSecretsId>965a6628-6d0b-45a0-9179-2830b9cb6053</UserSecretsId>
+		<RazorCompileOnBuild>false</RazorCompileOnBuild>
+		<RazorCompileOnPublish>false</RazorCompileOnPublish>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.18" />
+		<PackageReference Include="OrchardCore.Application.Mvc.Targets" Version="1.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Module1\Module1.csproj" />
+	</ItemGroup>
+
+	<Target Name="CopyAreaViewsForPublish" AfterTargets="Publish">
+		<Message Text="### PublishDir: '$(PublishDir)'" Importance="high" />
+		<ItemGroup>
+			<Views Include="..\*\Views\**" Exclude="..\ModularApplication\**" />
+			<Views Include="..\*\Pages\**" Exclude="..\ModularApplication\**" />
+		</ItemGroup>
+		<Message Text="### Views: '@(Views)'" Importance="high" />
+		<Copy SourceFiles="@(Views)" DestinationFolder="$(PublishDir)\Areas\HackFolder\%(Views.RelativeDir)" />
+	</Target>
+
+	<Target Name="CopyContentsForPublish" AfterTargets="Publish">
+		<Message Text="### PublishDir: '$(PublishDir)'" Importance="high" />
+		<ItemGroup>
+			<ContentFiles Include="..\*\wwwroot\**" Exclude="..\ModularApplication\**" />
+		</ItemGroup>
+		<Message Text="### ContentFiles: '@(ContentFiles)'" Importance="high" />
+		<Copy SourceFiles="@(ContentFiles)" DestinationFolder="$(PublishDir)\wwwroot\$([System.String]::Copy('%(ContentFiles.RecursiveDir)').Replace('wwwroot\', ''))" />
+	</Target>
+</Project>

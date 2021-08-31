@@ -1,0 +1,11 @@
+﻿@page
+@using Module1.Helpers
+@inject SingleViewCodeUpdateHelper DemoHelper
+@{
+    var updateTheView = DemoHelper.UpdateTheView();
+    var updateCount = DemoHelper.UpdateCount;
+}
+<div class="text-center">
+    <p>update SingleViewCode.cshtml completed => @updateCount</p>
+    <p>@(updateTheView.Success ? "OK" : "K.O.") => @updateTheView.Message</p>
+</div>

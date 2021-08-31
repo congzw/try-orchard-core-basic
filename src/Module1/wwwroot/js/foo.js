@@ -1,0 +1,1 @@
+﻿console.log('from module1 foo.js');

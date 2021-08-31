@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/app/libs/bootstrap3/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <partial name="_Nav" />
+        <hr />
+        <div>
+            <h2>ViewPath: @this.ViewContext.View.Path</h2>
+        </div>
+        <hr />
+        @RenderBody()
+        <hr />
+        <div>
+            <p>ExecutingFilePath: @this.ViewContext.ExecutingFilePath</p>
+        </div>
+    </div>
+</body>
+</html>
