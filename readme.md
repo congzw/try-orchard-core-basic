@@ -24,19 +24,24 @@ appsettings.json
 
 ### 1.3 OrchardCore的运行时Razor编译的支持
 
-////OK => Default
-//services
-//    .AddOrchardCore()
-//    .AddMvc();
 
-////OK => access IMvcBuilder
-//services
-//    .AddOrchardCore()
-//    .AddMvc()
-//    .ConfigureServices(cfgServices =>
-//    {
-//        cfgServices.AddMvcCore().AddRazorRuntimeCompilation();
-//    });
+默认的启动逻辑：
+
+	////OK => Default
+	//services
+	//    .AddOrchardCore()
+	//    .AddMvc();
+
+增加动态编译的启动逻辑：
+
+	////OK => access IMvcBuilder
+	//services
+	//    .AddOrchardCore()
+	//    .AddMvc()
+	//    .ConfigureServices(cfgServices =>
+	//    {
+	//        cfgServices.AddMvcCore().AddRazorRuntimeCompilation();
+	//    });
 
 ### 1.4 同时支持开发和发布阶段的一些Hack
 
